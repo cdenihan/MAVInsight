@@ -1,4 +1,13 @@
+"""
+MAVLink Connector Module.
+
+This module provides functionality for connecting to drones using the MAVLink protocol.
+It offers a simple interface to establish connections to UAVs via various connection methods
+(UDP, TCP, serial, etc.) and handles the initial communication handshake.
+"""
+
 from pymavlink import mavutil
+
 
 def connect_to_drone(connection_string="udp:localhost:14550"):
     """
@@ -14,13 +23,12 @@ def connect_to_drone(connection_string="udp:localhost:14550"):
     try:
         # Create a connection
         connection = mavutil.mavlink_connection(connection_string)
-        
         # Wait for the heartbeat message to confirm connection
         print("Waiting for heartbeat...")
         connection.wait_heartbeat()
-        print(f"Connected to drone (system: {connection.target_system}, component: {connection.target_component})")
-        
+        print(f"Connected to drone (system: {connection.target_system}, "
+              f"component: {connection.target_component})")
         return connection
-    except Exception as e:
+    except (ConnectionError, TimeoutError, OSError, ValueError) as e:
         print(f"Connection failed: {e}")
         return None
