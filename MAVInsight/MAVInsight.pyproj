@@ -22,8 +22,11 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="data_collector.py" />
+    <Compile Include="data_manager.py" />
     <Compile Include="MAVInsight.py" />
     <Compile Include="mavlink_connector.py" />
+    <Compile Include="visualizer.py" />
   </ItemGroup>
   <ItemGroup>
     <Interpreter Include="env\">

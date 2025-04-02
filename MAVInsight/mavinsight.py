@@ -6,6 +6,7 @@ handling the connection to drones using MAVLink protocol.
 """
 
 import mavlink_connector
+from data_collector import DataCollector
 
 
 def main():
@@ -30,5 +31,7 @@ if __name__ == "__main__":
     # Run the main function
     drone_connection = main()
     if drone_connection:
-        print("Connection established. Connection object available for use.")
-        # You can now use drone_connection for further operations
+        print("Connection established")
+
+    # Call DataCollector class
+    data_collector = DataCollector(drone_connection)
